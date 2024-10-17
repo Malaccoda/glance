@@ -24,6 +24,6 @@ jobs:
     - name: Upload Go test results
       uses: actions/upload-artifact@v4
       with:
-        name: Go-results-${{ GITHUB_RUN_ID }}
-        path: glance-${{ GITHUB_RUN_ID }}.json
+        name: Go-results-${{ GITHUB_RUN_ATTEMPT }}
+        path: glance-${{ GITHUB_RUN_ATTEMPT }}.json
         retention-days: 1
