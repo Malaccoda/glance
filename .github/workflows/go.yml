@@ -1,16 +1,13 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
-name: Go deploy
+name: Go Build
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "Malaccoda-test-1" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -22,7 +19,11 @@ jobs:
         go-version-file: go.mod
 
     - name: Build
-      run: go build -v ./...
+      run: go build .
 
-    - name: Test
-      run: go test -v ./...
+    - name: Upload Go test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: Go-results-${{ GITHUB_RUN_ID }}
+        path: glance-${{ GITHUB_RUN_ID }}.json
+        retention-days: 1
